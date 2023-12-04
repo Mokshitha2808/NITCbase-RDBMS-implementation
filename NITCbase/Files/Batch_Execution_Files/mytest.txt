@@ -1,0 +1,20 @@
+open table Events
+open table Locations
+open table Participants
+select location from Events join Locations into EventLocations where Events.location = Locations.name;
+select * from Events join Participants into rel1 where Events.title = Participants.event
+open table rel1
+select regNo,title from rel1 into AudiPeople where location = Audi
+select * from rel1 join Locations into rel2 where rel1.location = Locations.name
+open table rel2
+select * from rel2 into rel3 where capacity>100
+open table rel3
+select regNo,title from rel3 into MiniEventPeopl where capacity<200
+open table Organizers
+select regNo,name,location from rel1 join Organizers where rel1.id = Organizers.eventId
+open table Students
+select regNo,name,location from rel1 join Students where rel1.id = Students.id
+select * from rel into Relation1 where rel.name = Arthur;
+select * from rel into intermediate where rel.name = Williams
+select * from Relation1 join intermediate into final
+
